@@ -63,7 +63,7 @@ WanderLust is a simple MERN travel blog website ✈ This project is aimed to hel
 #
 - <b>Open the below ports in security group of master machine and also attach same security group to Jenkins worker node (We will create worker node shortly)</b>
 ![image](https://github.com/user-attachments/assets/4e5ecd37-fe2e-4e4b-a6ba-14c7b62715a3)
-
+# Note
 > [!Note]
 > We are creating this master machine because we will configure Jenkins master, eksctl, EKS cluster creation from here.
 
