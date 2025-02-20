@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-deployment
+  name: skmirza-redis-deploy
   namespace: wanderlust
   labels:
-    app: redis
+    app: skmirza-redis
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: redis
+      app: skmirza-redis
   template:
     metadata:
-      name: redis
+      name: skmirza-redis
       labels:
-        app: redis
+        app: skmirza-redis
     spec:
       containers:
-        - name: redis
+        - name: skmirza-redis
           image: redis
           ports:
             - containerPort: 6379
@@ -25,18 +25,18 @@ spec:
             - name: mongo-storage
               mountPath: /var/lib/redis/dump.rdb
       volumes:
-        - name: mongo-storage
+        - name: skmirza-mongo-storage
           persistentVolumeClaim:
-            claimName: mongo-pvc
+            claimName: skmirza-mongo-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-service
+  name: skmirza-redis-service
   namespace: wanderlust
 spec:
   selector:
-    app: redis
+    app: skmirza-redis
   ports:
     - port: 6379
       targetPort: 6379
