@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-deployment
+  name: skmirza-mongo-deploy
   namespace: wanderlust
   labels:
-    app: mongo
+    app: skmirza-mongo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: mongo
+      app: skmirza-mongo
   template:
     metadata:
-      name: mongo
+      name: skmirza-mongo
       labels:
-        app: mongo
+        app: skmirza-mongo
     spec:
       containers:
-        - name: mongo
+        - name: skmirza-mongo
           image: mongo
           ports:
             - containerPort: 27017
@@ -33,11 +33,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-service
+  name: skmirza-mongo-service
   namespace: wanderlust
 spec:
   selector:
-    app: mongo
+    app: skmirza-mongo
   ports:
     - port: 27017
       targetPort: 27017
