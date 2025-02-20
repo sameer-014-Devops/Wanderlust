@@ -1,36 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-deployment
+  name: skmirza-backend-deploy
   namespace: wanderlust
   labels:
-    app: backend
+    app: skmirza-backend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: backend
+      app: skmirza-backend
   template:
     metadata:
-      name: backend
+      name: skmirza-backend
       labels:
-        app: backend
+        app: skmirza-backend
     spec:
       containers:
-        - name: backend
-          image: trainwithshubham/wanderlust-backend-beta:v2.1
+        - name: skmirza-backend
+          image: sameer014/skmirza-wanderlust-backend:1.0.0
           ports:
             - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: skmirza-backend-service
   namespace: wanderlust
 spec:
   type: NodePort
   selector:
-    app: backend
+    app: skmirza-backend
   ports:
     - port: 8080
       targetPort: 8080
